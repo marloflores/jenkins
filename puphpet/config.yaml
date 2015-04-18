@@ -10,9 +10,6 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                bYFHZnlY47dX:
-                    host: '2222'
-                    guest: '22'
                 8TyKkYY6BrgC:
                     host: '8080'
                     guest: '80'
@@ -38,16 +35,26 @@ vagrantfile-local:
             BmWKy0muv0lB:
                 owner: www-data
                 group: www-data
-                source: ./
-                target: /var/www
+                source: ./httpd
+                target: /var/httpd
                 sync_type: nfs
                 rsync:
                     args:
                         - '--verbose'
                         - '--archive'
                         - '-z'
-                    exclude:
-                        - .vagrant/
+                    auto: 'false'
+            BmWKy0muv0lC:
+                owner: www-data
+                group: www-data
+                source: ./resources
+                target: /resources
+                sync_type: nfs
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
                     auto: 'false'
         usable_port_range:
             start: 10200
@@ -82,7 +89,7 @@ apache:
     settings:
         user: www-data
         group: www-data
-        default_vhost: true
+        default_vhost: false
         manage_user: false
         manage_group: false
         sendfile: 0
@@ -92,7 +99,7 @@ apache:
     vhosts:
         pwysvdu1w0h2:
             servername: jenkins.dev
-            docroot: /var/www/jenkins
+            docroot: /var/httpd/public
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -100,7 +107,7 @@ apache:
             directories:
                 d4vuiaubc2zr:
                     provider: directory
-                    path: /var/www/jenkins
+                    path: /var/httpd/public
                     options:
                         - Indexes
                         - FollowSymlinks
