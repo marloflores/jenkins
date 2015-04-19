@@ -71,7 +71,9 @@ vagrantfile-local:
         host: detect
 server:
     install: '1'
-    packages: {  }
+    packages:
+        - openjdk-7-jre
+        - openjdk-7-jdk
 users_groups:
     install: '1'
     groups: {  }
