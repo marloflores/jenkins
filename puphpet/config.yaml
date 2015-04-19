@@ -229,7 +229,8 @@ nodejs:
     npm_packages: {  }
 python:
     install: '1'
-    packages: {  }
+    packages:
+        - meld3
     versions: {  }
 mysql:
     install: '1'
