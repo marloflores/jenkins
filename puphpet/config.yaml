@@ -99,30 +99,11 @@ apache:
     vhosts:
         pwysvdu1w0h2:
             servername: jenkins.dev
-            docroot: /var/httpd/public
             port: '80'
+            docroot: /var/httpd/public
             setenv:
                 - 'APP_ENV dev'
             custom_fragment: /resources/apache2/httpd.conf
-            directories:
-                d4vuiaubc2zr:
-                    provider: directory
-                    path: /var/httpd/public
-                    options:
-                        - Indexes
-                        - FollowSymlinks
-                        - MultiViews
-                    allow_override:
-                        - All
-                    require:
-                        - 'all granted'
-                    custom_fragment: ''
-                    files_match:
-                        l9rhj3o4quft:
-                            provider: filesmatch
-                            path: \.php$
-                            sethandler: 'proxy:fcgi://127.0.0.1:9000'
-                            custom_fragment: ''
             ssl_cert: ''
             ssl_key: ''
             ssl_chain: ''
