@@ -37,7 +37,6 @@ vagrantfile-local:
                 group: www-data
                 source: ./httpd
                 target: /var/httpd
-                sync_type: nfs
                 rsync:
                     args:
                         - '--verbose'
@@ -49,7 +48,6 @@ vagrantfile-local:
                 group: www-data
                 source: ./resources
                 target: /resources
-                sync_type: nfs
                 rsync:
                     args:
                         - '--verbose'
